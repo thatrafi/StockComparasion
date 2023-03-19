@@ -1,0 +1,38 @@
+﻿html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+button {
+    max-width: 200px;
+}
+
+.stockBox {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 3rem;
+}
+
+.formContainer {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    gap: 3rem;
+    flex-direction: column;
+}

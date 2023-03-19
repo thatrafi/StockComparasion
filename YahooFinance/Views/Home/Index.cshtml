@@ -1,0 +1,36 @@
+﻿@model IEnumerable<StockInformationModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div class="formContainer">
+    <h1 class="display-4">Stock Trends</h1>
+    <multiple-dropdown labels="Select first stock symbol,Select second stock symbol,Select third stock symbol" options="AAPL,ASX.AX,AMZN,GOOG,META"></multiple-dropdown>
+    <div class="text-center">
+        <button class="btn btn-primary" onclick="showValues()">Show Comparison</button>
+    </div>
+    @if (Model != null)
+    {
+        <div class="stockBox">
+            @foreach (var data in Model)
+            {
+                if (data.CurrentPrice > 0)
+                {
+                  <stock-information price=@data.CurrentPrice symbol=@data.Symbol trends="@data.TrendsString" timestamp="@data.TimeStampString"></stock-information>
+                }
+            }
+        </div>
+    }
+</div>
+
+<script>
+    function showValues() {
+        const textInput = document.querySelector('multiple-dropdown');
+        const symbols = textInput.getValues();
+        const uniqueSymbols = [...new Set(symbols)];
+         window.location.href = "?stocks=" + uniqueSymbols.join(",")
+    }
+</script>
+
+
