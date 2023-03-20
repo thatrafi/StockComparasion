@@ -49,5 +49,23 @@ To run the YahooFinance project on Visual Studio Mac, you will need to run both 
 
 Once the application is running, you will be provided with three dropdown of a stock symbol that you can choose. You can view the stock trend comparasion by clicking the "Show Comparasion" Button
 
+# YahooFinanceApi ASP.NET Project
+
+YahooApi is an ASP.NET project that provides an API to fetch stock information from Yahoo Finance. The API uses the endpoint `https://query1.finance.yahoo.com/v8/finance/chart/{symbol}` to get the stock information.
+
+## API Endpoint
+
+The YahooApi endpoint is `/StockInformation?symbols=`. To use the endpoint, you will need to pass a list of symbols separated by commas as a parameter. For example, to get the stock information for AAPL and GOOG, you would use the endpoint `/StockInformation?symbols=AAPL,GOOG`.
+
+## Response
+
+The YahooApi endpoint returns a JSON object with the following properties:
+
+- `CurrentPrice`: The current price of the stock.
+- `Trends`: List of data stock price over the year.
+- `Timestamps`: List of timestamps of the stock information formatted in 'dd MM'.
+- `Symbol`: The symbol of the stock.
+- `ExchangeName`: The exchange name of the stock.
+
 ## Conclusion
 The YahooFinance project is a simple and straightforward application that provides stock information to users. By following the steps outlined in this README, you should be able to build and run the project without any issues. If you have any questions or encounter any problems, please contact me on thatrafibusiness@gmail.com
