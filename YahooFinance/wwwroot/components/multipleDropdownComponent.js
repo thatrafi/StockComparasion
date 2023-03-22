@@ -7,10 +7,9 @@
 
         this.innerHTML = `
             <style>
-            select {
-                margin-bottom: 10px;
-                display: block;
-                height: 30px;
+            .form-select {
+                white-space: nowrap;
+                width: auto;
             }
             form{
                 display: flex;
@@ -21,7 +20,7 @@
             </style>
             <form>
             ${labels.map((label, index) => `
-                <select id="select${index}" name="Symbols[0]"}>
+                <select class="form-select form-select-lg mb-3" id="select${index}" name="Symbols[0]"}>
                     <option value="0">${label}</option>
                     ${ options.map(option => `<option value="${option}">${option}</option>`).join('') }
                 </select>`).join(" ")}

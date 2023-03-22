@@ -65,7 +65,7 @@ public class StockInformationController : ControllerBase
                 Trends = trends,
                 Timestamps = timestamp
                 .Select(timestamp => DateTimeOffset.FromUnixTimeSeconds(timestamp)
-                .LocalDateTime.ToString("MMM dd"))
+                .LocalDateTime.ToString("MMM dd yy"))
                 .ToList(),
                 Symbol = meta.Symbol,
                 ExchangeName = meta.ExchangeName

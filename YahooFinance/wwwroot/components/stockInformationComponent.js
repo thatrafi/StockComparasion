@@ -5,7 +5,8 @@
         this.symbol = 'Unknown';
         this.trends = '';
         this.timestamp = '';
-        this.price = 0
+        this.price = 0;
+        this.stockId = this.getAttribute('stockId');
 
     }
 
@@ -58,16 +59,34 @@
 
     // Render the component
     render() {
-        this.innerHTML = `<div style="display: flex; flex-flow: row wrap; gap:1rem;">
-              <p>Stocks : ${this.symbol}</p>
-              <p>Current Price : ${this.price}</p>
-          </div>`;
+        const stockBoxId = `stockChart${this.stockId}`;
+        this.innerHTML = `
+        <style>
+        .text-bg-dark {
+            color: #fff!important;
+            background-color: RGBA(33,37,41,var(--bs-bg-opacity,1))!important;
+        }
+        .bg-light {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important;
+        }
+        .stock-card {
+            width:470px
+        }
+        </style>
+         <div class="stock-card ${this.stockId % 2 == 0 ? `text-bg-dark`:`bg-light` } me-md-1 text-center overflow-hidden">
+            <div class="my-3 py-3">
+                <h2 class="display-5">${this.symbol}</h2>
+                <p class="lead">Current Price : ${this.price}</p>
+            </div>
+            <div id="${stockBoxId}" class="${this.stockId % 2 == 0 ? `bg-dark`:`bg-light`} shadow-sm mx-auto" style="display: flex; justify-content:center;width: 95%; border-radius: 21px 21px 0 0;"></div>
+        </div>`;
         // Create a canvas element
         const canvas = document.createElement('canvas');
-        canvas.width = 420;
-        canvas.height = 250;
+        const stockBox = document.getElementById(`${stockBoxId}`);
+        stockBox.appendChild(canvas);
 
-        this.appendChild(canvas);
+        //this.appendChild(canvas);
 
         // Get the context of the canvas
         this.ctx = canvas.getContext('2d');

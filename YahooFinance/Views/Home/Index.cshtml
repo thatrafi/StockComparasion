@@ -6,19 +6,24 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <div class="formContainer">
     <h1 class="display-4">Stock Trends</h1>
-    <multiple-dropdown labels="Select first stock symbol,Select second stock symbol,Select third stock symbol" options="AAPL,ASX.AX,AMZN,GOOG,META"></multiple-dropdown>
+    <multiple-dropdown
+        labels="Select first stock symbol,Select second stock symbol,Select third stock symbol"
+        options="AAPL,ASX.AX,AMZN,GOOG,META,TSLA">
+    </multiple-dropdown>
     <div class="text-center">
         <button class="btn btn-primary" onclick="showValues()">Show Comparison</button>
     </div>
     @if (Model != null)
     {
+        var index = 0;
         <div class="stockBox">
             @foreach (var data in Model)
             {
                 if (data.CurrentPrice > 0)
                 {
-                  <stock-information price=@data.CurrentPrice symbol=@data.Symbol trends="@data.TrendsString" timestamp="@data.TimeStampString"></stock-information>
+                  <stock-information stockId="@index" price=@data.CurrentPrice symbol=@data.Symbol trends="@data.TrendsString" timestamp="@data.TimeStampString"></stock-information>
                 }
+                index++;
             }
         </div>
     }
@@ -28,7 +33,9 @@
     function showValues() {
         const textInput = document.querySelector('multiple-dropdown');
         const symbols = textInput.getValues();
-        const uniqueSymbols = [...new Set(symbols)];
+        // remove 0 value
+        const filteredSymbols = symbols.filter(e => e !== '0')
+        const uniqueSymbols = [...new Set(filteredSymbols)];
          window.location.href = "?stocks=" + uniqueSymbols.join(",")
     }
 </script>
